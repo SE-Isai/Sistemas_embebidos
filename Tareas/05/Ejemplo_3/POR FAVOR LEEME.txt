@@ -1,1 +1,0 @@
-En la simulacion cargar el codigo "serial" al arduino que recibe la informacion, y cargar "serial_2" al arduino que recibe
