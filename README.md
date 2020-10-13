@@ -1,1 +1,3 @@
-# Presentacion-sistemas-embebidos
+# Isaí Fomperoza Salgado
+# Sistemas embebidos
+# Repositorio
