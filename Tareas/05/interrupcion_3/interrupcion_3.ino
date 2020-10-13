@@ -6,9 +6,9 @@
 //******************************************************************************
 // ---[ BIBLIOTECAS ]---
 // De momento no se necesitan
-volatile char incomingByte;
+volatile char incomingByte; //creamos la variable
 void setup() {
-  Serial.begin(5700);
+  Serial.begin(57600);       //la velocidad en bauds
 
 }
 
@@ -16,8 +16,8 @@ void loop() {
 
 }
 void serialEvent(){
-  Serial.println("Recibi:");
-  char incomingByte= Serial.read();
-  Serial.println(incomingByte);
+  Serial.println("Recibi:");        //imprimimos un letrero
+  char incomingByte= Serial.read(); //leemos el canal serial 
+  Serial.println(incomingByte);     //mostramos la letra recibida por el canal serial
   
   }
