@@ -1,11 +1,10 @@
-// Download 'SimpleDHT' library from the library manager to run this
-// code successfully.
+
 #include <SimpleDHT.h>
 
-// for DHT22, 
-//      VCC: 5V or 3V
+// Para DHT11, 
+//      VCC: 5V o 3V
 //      GND: GND
-//      DATA: 2
+//      DATA: 5
 int pinDHT11 = 5;
 int led=6;
 int luz=0;
@@ -18,11 +17,7 @@ void setup() {
 }
 
 void loop() {
-  // start working...
-  
-  // read without samples.
-  // @remark We use read2 to get a float data, such as 10.1*C
-  //    if user doesn't care about the accurate data, use read to get a byte data, such as 10*C.
+ 
   float temperature = 0;
   float humidity = 0;
   int err = SimpleDHTErrSuccess;
@@ -50,12 +45,12 @@ void loop() {
     return;
   }
   
-  Serial.print((float)temperature);
+  Serial.print((float)temperature); //Mandamos al puerto serial los datos de humedad y temperatura
   Serial.print(",");
   Serial.println((float)humidity);
   
-  // DHT22 sampling rate is 0.5HZ.
-  delay(2500);
+  
+  delay(2500);// Frecuencia de muestreo del sensor.
   
 }
   void serialEvent(){
