@@ -1,12 +1,11 @@
-// Lets create a simple meter
 
-// Import Meter library
+// Importamos la libreria meter
 import meter.*;
 
-// Import serial library
+// Importamos la libreria visual
 import processing.serial.*;
 
-Serial port; // Define a port
+Serial port; // Definimos botones
 int x1=50;
 int y1=400;
 int x2=500;
@@ -21,32 +20,31 @@ boolean button3 = false;
 Meter m, m2;
 
 void setup(){
-  // First we need to create a empty window
-  size(950, 600); // Size of the window (width, height)
-  background(#EFF2CD); // Background color of window (R,G,B)
+  // Creamos una ventana vacia
+  size(950, 600); // 
+  background(#EFF2CD); // Color del background (R,G,B)
   
-  // Create new port
-  port = new Serial(this, "COM6", 9600); //name of the port would be different for linux
+  // Creamos el puerto serial
+  port = new Serial(this, "COM6", 9600); //Se define el puerto donde esta conectado nuestro arduino y la velocidad
   
-  // Lets add a default meter to empty window
-  // TEMPERATURE METER
-  m = new Meter(this, 25, 80);  // here 25, 10 are x and y coordinates of meter's upper left corner
+  // Agregamos indicador de temperatura
+  m = new Meter(this, 25, 80);  // aqui 25, 10 son coordenadas X y Y del indicador
   
   m.setTitleFontSize(20);
   m.setTitleFontName("Arial bold");
-  m.setTitle("Temperature (C)");
+  m.setTitle("Temperatura (C)");
   
-  // Change meter scale values
+  // Ponemos la escala de temperatura
   String[] scaleLabels = {"0", "10", "20", "30", "40", "50", "60", "70", "80"};
   m.setScaleLabels(scaleLabels);
   m.setScaleFontSize(18);
   m.setScaleFontName("Times new roman bold");
   m.setScaleFontColor(color(200, 30, 70));
   
-  // We can also display the value of meter
+  // Desplegamos una pantalla adicional para mostrar la temperatura
   m.setDisplayDigitalMeterValue(true);
   
-  // Lets do some more modifications so our meter looks nice
+  // Algunas modificaciones graficas del indicador 
   m.setArcColor(color(141, 113, 178));
   m.setArcThickness(15);
   
@@ -57,29 +55,29 @@ void setup(){
   
   m.setNeedleThickness(3);
   
-  // HUMIDITY METER
-  // lets take some refference from first meter
-  int mx = m.getMeterX(); // x coordinate of m
-  int my = m.getMeterY(); // y coordinate of m
+  // Sensor de humedad
+ 
+  int mx = m.getMeterX(); // Coordenada x 
+  int my = m.getMeterY(); // Coordenada y 
   int mw = m.getMeterWidth();
   
   m2 = new Meter(this, mx + mw + 20, my);
   
   m2.setTitleFontSize(20);
   m2.setTitleFontName("Arial bold");
-  m2.setTitle("Humidity (%)");
+  m2.setTitle("Humedad (%)");
   
-  // Change meter scale values
+  // Ponemos escala de valores
   String[] scaleLabels2 = {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
   m2.setScaleLabels(scaleLabels2);
   m2.setScaleFontSize(18);
   m2.setScaleFontName("Times new roman bold");
   m2.setScaleFontColor(color(200, 30, 70));
   
-  // We can also display the value of meter
+  // Desplegamos una pantalla adicional para mostrar la temperatura
   m2.setDisplayDigitalMeterValue(true);
   
-  // Lets do some more modifications so our meter looks nice
+  // Algunas modificaciones graficas del indicador
   m2.setArcColor(color(141, 113, 178));
   m2.setArcThickness(15);
   
@@ -92,7 +90,7 @@ void setup(){
 }
 
 void draw(){
-  // Lets give title to our window
+  // Dibujamos los botones
   fill(#D64747);
   stroke(0);
   rect(x1,y1, w, h);
@@ -101,21 +99,21 @@ void draw(){
    fill(#FCE5F8);
    rect(x3,y3, w, h);
   textSize(30);
-  fill(0); // Font color , (r,g,b)
-  text("Temperature and Humidity", 250, 40); // ("text", x, y)
+  fill(0); // Color de texto , (r,g,b)
+  text("Temperatura y humedad", 250, 40); // ("texto", x, y)
   textSize(30);
-  fill(0); // Font color , (r,g,b)
-  text("Encender LED", x1+100, y1+40); // ("text", x, y)
+  fill(0); 
+  text("Encender LED", x1+100, y1+40); 
   textSize(30);
-  fill(0); // Font color , (r,g,b)
-  text("Apagar LED", x2+100, y2+40); // ("text", x, y)
+  fill(0); 
+  text("Apagar LED", x2+100, y2+40); 
   textSize(30);
-  fill(0); // Font color , (r,g,b)
-  text("Parpadear", x3+100, y3+40); // ("text", x, y)
+  fill(0); 
+  text("Parpadear", x3+100, y3+40); 
   textSize(35);
-  fill(0); // Font color , (r,g,b)
+  fill(0); 
   text("Equipo 1", 750, 550);
-  if (button1){
+  if (button1){               //Si algun boton se habilita mandamos informacion al puerto serial
     port.write(65);
     button1 = false;
     }
@@ -129,21 +127,22 @@ void draw(){
     }
  
   if (port.available() > 0){
-    String val = port.readString(); // read incoming string on serial port
-    // First we need to separate temperature and humidity values
-    String[] list = split(val, ','); // splits value separated by ','
-    float temp = float(list[0]); // first value is Temperature
-    float hum = float(list[1]);  // second value is Humidity
+    String val = port.readString(); // Lee cadenas de datos del puerto serial
+    // Tenemos que separar los valores de humedad y temperatura que estan separados por comas
+    String[] list = split(val, ','); // dividimos los valores separados por ','
+    float temp = float(list[0]); // Guardamos temperatura en esta variable
+    float hum = float(list[1]);  // Guardamos humedad en esta variable
     
-    m.updateMeter(int(temp)); // int is used due to updateMeter accepts only int values
+    m.updateMeter(int(temp)); // Actualizamos el indicador en cada ciclo
     m2.updateMeter(int(hum));
     
-    println("Temperature: " + temp + " C  " + "Humidity: " + hum+ "%");
+    println("Temperatura: " + temp + " C  " + "Humedad: " + hum+ "%");
   }
   
 }
-void mousePressed(){
-  if ((mouseX > x1) && (mouseX < x1+w) && (mouseY > y1) && (mouseY < y1+h)){
+                                 
+void mousePressed(){                           //Rutina cuando se presiona el boton del mouse
+  if ((mouseX > x1) && (mouseX < x1+w) && (mouseY > y1) && (mouseY < y1+h)){  //Ajustamos la posicion de los botones
     if(button1){
   button1 = false;
   } else {
