@@ -1,0 +1,2 @@
+Keypad -------> https://github.com/Chris--A/Keypad
+Pantalla LCD i2c ------> https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library
