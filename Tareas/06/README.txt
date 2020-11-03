@@ -1,5 +1,8 @@
 # Tarea Número 06
-## Menu
-### Isai Fomperoza Salgado
-
-En esta tarea desarrollamos un menu con botones como controles en una pantalla lcd 20x4 para controlar un led y visualizar variables de el sensor dth11 en el pin digital 5 de arduino.
+## Menú Arduino LCD
+## Código Arduino y Simulación 
+### Equipo 1:
+### Martha Diana Ramírez Torres
+### Juan Manuel Hernández Hernández
+### Isaí Fomperoza Salgado
+En esta carpeta se encuentra el código  simulación de un menú funcional con LCD
