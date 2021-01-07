@@ -1,7 +1,7 @@
-#include <SimpleDHT.h>
-int pinDHT11 = 5;
+
+
 int led=6;
-SimpleDHT11 dht11(pinDHT11);
+
 // ============================================================
 //                     Menú: Equipo01
 // ============================================================
@@ -23,7 +23,7 @@ SimpleDHT11 dht11(pinDHT11);
 // *********************************************************************
   #include <Wire.h>
   #include <LiquidCrystal_I2C.h>
-  #include <LCDMenuLib2.h>
+  #include <LCDMenuLib.h>
 
 // *********************************************************************
 // Configuraciones para LCDML 
@@ -66,8 +66,8 @@ SimpleDHT11 dht11(pinDHT11);
 // *********************************************************************
 // Objetos
 // *********************************************************************
-  LCDMenuLib2_menu LCDML_0 (255, 0, 0, NULL, NULL); // Elemento principal del menú, (NO CAMBIAR)
-  LCDMenuLib2 LCDML(LCDML_0, _LCDML_DISP_rows, _LCDML_DISP_cols, lcdml_menu_display, lcdml_menu_clear, lcdml_menu_control);
+  LCDMenuLib_menu LCDML_0 (255, 0, 0, NULL, NULL); // Elemento principal del menú, (NO CAMBIAR)
+  LCDMenuLib LCDML(LCDML_0, _LCDML_DISP_rows, _LCDML_DISP_cols, lcdml_menu_display, lcdml_menu_clear, lcdml_menu_control);
 
 // *********************************************************************
 // LCDML MENU/DISPLAY
