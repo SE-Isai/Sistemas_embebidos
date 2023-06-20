@@ -1,4 +1,3 @@
-# Tarea Número 1
 # Presentacion de sensores y actuadores
 # Isai Fomperoza Salgado
 En esta sección se encuentra lo relacionado con Sensores:
