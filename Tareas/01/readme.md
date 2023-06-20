@@ -1,5 +1,5 @@
 # Presentacion de sensores y actuadores
-# Isai Fomperoza Salgado
+
 En esta sección se encuentra lo relacionado con Sensores:
 
 1.Definición
